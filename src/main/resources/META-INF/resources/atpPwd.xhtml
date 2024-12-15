@@ -1,0 +1,41 @@
+<ui:composition
+        xmlns:ui="jakarta.faces.facelets"
+        xmlns:p="http://primefaces.org/ui"
+        xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+        template="/template1.xhtml">
+    <ui:define name="content" >
+        <p:growl id="growl" showDetail="true"/>
+        <p:messages id="messages_atp" showDetail="true" closable="true">
+            <p:autoUpdate/>
+        </p:messages>
+
+
+
+            <p:panel header="Get ATP Pwd For Given tenant ">
+                <h:panelGrid columns="2" cellpadding="4">
+                    <h:outputLabel for="environment" value="Environment"/>
+                    <p:selectOneMenu value="#{atpPwdController.selectedEnvironment}" id="environment">
+                        <f:selectItems value="#{atpPwdController.environments}"/>
+                    </p:selectOneMenu>
+
+                    <h:outputLabel for="tenant" value="Tenant"/>
+
+                    <p:inputText id="tenant" value="#{atpPwdController.tenant}"/>
+
+                    <p:commandButton value="Get ATP Pwd" action="#{atpPwdController.getAtpPwd()}"/>
+
+
+                </h:panelGrid>
+
+            </p:panel>
+
+            <p:dialog header="Greeting" widgetVar="greetingDialog"
+                        >
+                <h:panelGrid id="greeting-panel" columns="1" cellpadding="4">
+                    <h:outputText value="#{helloWorld.showGreeting()}" />
+                </h:panelGrid>
+            </p:dialog>
+
+    </ui:define>
+</ui:composition>
+

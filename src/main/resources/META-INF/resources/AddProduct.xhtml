@@ -1,0 +1,37 @@
+<ui:composition
+        xmlns:ui="jakarta.faces.facelets"
+        xmlns:p="http://primefaces.org/ui"
+        xmlns:h="http://java.sun.com/jsf/html"
+        template="/template1.xhtml">
+    <ui:define name="content" >
+        <p:growl id="growl" showDetail="true"/>
+
+
+            <p:panel header="Add Product">
+                <h:panelGrid columns="2" cellpadding="4">
+                    <h:outputText value="Name: " />
+                    <p:inputText id="name" value="#{productController.product.name}" />
+
+                    <h:outputText value="Description: " />
+                    <p:inputText id="description" value="#{productController.product.description}" />
+
+
+                    <p:commandButton action="#{productController.save()}" value="Save">
+                        <p:ajax event="dialogReturn" listener="#{productController.onReturnFromLevel1}" update="growl"/>
+
+                    </p:commandButton>
+
+                </h:panelGrid>
+
+            </p:panel>
+
+            <p:dialog header="Greeting" widgetVar="greetingDialog"
+                        >
+                <h:panelGrid id="greeting-panel" columns="1" cellpadding="4">
+                    <h:outputText value="#{helloWorld.showGreeting()}" />
+                </h:panelGrid>
+            </p:dialog>
+
+    </ui:define>
+</ui:composition>
+
